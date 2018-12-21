@@ -9,8 +9,6 @@ let zenska = document.querySelector("#zenska");
 let muska = document.querySelector("#muska");
 let nfa = document.querySelectorAll('.nfa');
 
-
-
 $.ajax({
     url: "https://raw.githubusercontent.com/Danilovesovic/shop/master/shop.json",
     dataType: "JSON"
