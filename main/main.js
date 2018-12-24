@@ -105,9 +105,9 @@ $.ajax({
     }
     function getInfo() {
         let pictureAttribute = this.getAttribute("src");
-        let sub = pictureAttribute.substr(13);
+        let sub = pictureAttribute.substring(13, pictureAttribute.length - 4);
         localStorage.setItem("save", sub);
-        this.parentElement.setAttribute("href", "http://localhost/shopVezba/detailed.html")
+        this.parentElement.setAttribute("href", "http://localhost/shopVezba/detailed.html");
     }
 
 });
