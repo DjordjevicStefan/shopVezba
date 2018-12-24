@@ -1,13 +1,19 @@
 let test = localStorage.getItem('save');
-let test2 = test.substring(0, test.length - 4)
+let pictureAtt = test.substring(0, test.length - 4)
+
+
 
 
 let detailedT = document.querySelector("#detailedT");
 let secondT = document.querySelector("#secondT");
-console.log(detailedT);
+
 
 let detailedTemplate = detailedT.innerHTML;
 let detailedTemplate2 = secondT.innerHTML;
+
+
+
+
 let first = document.querySelector(".first");
 let second = document.querySelector(".second");
 
@@ -18,44 +24,71 @@ $.ajax({
     let db = ee;
 
 
-    for (let i = 0; i < db.length; i++) {
+function showSecTemplate(holder){
+        let list1 = "";
+        for (let i = 0; i < holder.length; i++) {
+        list1 += detailedTemplate2.replace(/{{colection}}/g, holder[i].colection)
+            .replace(/{{imgSrc}}/gi, holder[i].imgSrc)
+            .replace(/{{productTitle}}/gi, holder[i].productTitle)
+            .replace(/{{model}}/gi, holder[i].model)
+            .replace(/{{price}}/gi, holder[i].price)
+    }
+        second.innerHTML = list1;
 
-        if (test2 === db[i].imgSrc) {
+}
 
-            let list = "";
+function showOnlyOne(arg){
+    let list = "";
+    list = detailedTemplate.replace(/{{colection}}/g, arg.colection)
+        .replace(/{{imgSrc}}/g, arg.imgSrc)
+        .replace(/{{productTitle}}/gi, arg.productTitle)
+        .replace(/{{model}}/gi, arg.model)
+        .replace(/{{price}}/g, arg.price)
 
-            list = detailedTemplate.replace(/{{colection}}/g, db[i].colection)
-                .replace(/{{imgSrc}}/g, db[i].imgSrc)
-                .replace(/{{productTitle}}/gi, db[i].productTitle)
-                .replace(/{{model}}/gi, db[i].model)
-                .replace(/{{price}}/g, db[i].price)
+    first.innerHTML = list;
+}
 
-            first.innerHTML = list;
+   for (let i = 0; i < db.length; i++) {
+
+        if (pictureAtt === db[i].imgSrc) {
+        showOnlyOne(db[i]);
+        
+
+          if (db[i].colection === "female" ) {
+              
+            let holder = db.filter(function (z) {
+                return z.colection === "female";
+            });
+            let newArr = [] ;
+            for (let i = 0; i < 4 ; i++) {
+              let rnd = Math.floor(Math.random() * holder.length);  
+              newArr.push(holder[rnd]);
+              holder.splice(rnd,1);
+              }
+            showSecTemplate(newArr);
+              
+          } else {
+
+            let holder = db.filter(function (z) {
+                return z.colection === "male";
+            });
+            let newArr = [] ;
+            for (let i = 0; i < 4 ; i++) {
+              let rnd = Math.floor(Math.random() * holder.length);  
+              newArr.push(holder[rnd]);
+              holder.splice(rnd,1);
+              }
+            showSecTemplate(newArr);
+
+          }
 
 
         }
 
     }
 
-    let list3 = "";
+    
 
-    for (let i = 0; i < 4; i++) {
-        let random = Math.floor(Math.random() * db.length)
+ }
 
-
-        list3 = detailedTemplate2.replace(/{{colection}}/g, db[random].colection)
-            .replace(/{{imgSrc}}/g, db[random].imgSrc)
-            .replace(/{{productTitle}}/gi, db[random].productTitle)
-            .replace(/{{model}}/gi, db[random].model)
-            .replace(/{{price}}/g, db[random].price)
-
-        second.innerHTML += list3;
-        list3 = "";
-
-    }
-
-
-
-
-
-})
+);

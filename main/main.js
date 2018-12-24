@@ -1,6 +1,7 @@
 $(".back-to-top").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 1000);
 });
+
 let template = document.querySelector("#kolekcija");
 templateInr = template.innerHTML;
 
@@ -17,20 +18,23 @@ $.ajax({
     let data = ee;
 
     function showColecton(arg) {
-        let list5 = "";
+        let list = "";
         for (let i = 0; i < arg.length; i++) {
 
-            list5 += templateInr.replace(/{{colection}}/g, arg[i].colection)
+            list += templateInr.replace(/{{colection}}/g, arg[i].colection)
                 .replace(/{{newCol}}/g, arg[i].newCol)
                 .replace(/{{popular}}/g, arg[i].popular)
                 .replace(/{{action}}/g, arg[i].action)
-                .replace(/{{imgSrc}}/g, arg[i].imgSrc)
-                .replace(/{{productTitle}}/g, arg[i].productTitle)
+                .replace(/{{imgSrc}}/gi, arg[i].imgSrc)
+                .replace(/{{productTitle}}/gi, arg[i].productTitle)
                 .replace(/{{model}}/g, arg[i].model)
                 .replace(/{{price}}/g, arg[i].price)
         }
-        koll.innerHTML = list5;
+        koll.innerHTML = list;
     }
+
+    
+      
 
     showColecton(data);
     addListener(data);
@@ -42,6 +46,7 @@ $.ajax({
         let holder = data.filter(function (z) {
             return z.colection === "female";
         });
+       
         showColecton(holder);
         addListener(holder);
     }
@@ -101,7 +106,6 @@ $.ajax({
     function getInfo() {
         let pictureAttribute = this.getAttribute("src");
         let sub = pictureAttribute.substr(13);
-        console.log(sub);
         localStorage.setItem("save", sub);
         this.parentElement.setAttribute("href", "http://localhost/shopVezba/detailed.html")
     }
