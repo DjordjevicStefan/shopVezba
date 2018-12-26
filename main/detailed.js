@@ -10,8 +10,23 @@ let detailedTemplate2 = secondT.innerHTML;
 let first = document.querySelector(".first");
 let second = document.querySelector(".second");
 
-// let cartArr = [];
-// localStorage.setItem("cartTest" , cartArr) ;
+let badge = document.querySelector(".badge");
+
+if (!localStorage.getItem("cartSave")) {
+  badge.textContent = 0 ;
+} else{
+    let badgeNumber = JSON.parse(localStorage.getItem("cartSave"));
+    badge.textContent = badgeNumber.length ;  
+}
+
+badge.addEventListener("click" , goToCart);
+
+function goToCart() {
+    this.parentElement.setAttribute("href", "http://localhost/shopVezba/shoppingCart.html");
+}
+
+
+
 
 
 
@@ -65,6 +80,9 @@ function showOnlyOne(arg){
 
     first.innerHTML = list;
 
+    let kolicina = document.querySelector(".quantity").firstElementChild;
+    
+    
     let cart = document.querySelector('.add-to-cart');
     cart.addEventListener("click" , cartAdd);
  
@@ -74,16 +92,46 @@ function showOnlyOne(arg){
 
 
          if (!localStorage.getItem("cartSave")) {
-            console.log("test");
             let cartArr = [];
-            cartArr.push(this.getAttribute("data-cart"));
-            localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+            
+            if (kolicina.value < 1) {
+               
+                cartArr.push(this.getAttribute("data-cart"));
+                localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+                badge.textContent++ ;
+
+            } else {
+                for (let i = 0; i < kolicina.value; i++) {
+                    cartArr.push(this.getAttribute("data-cart"));
+                    localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+                    badge.textContent++ ;
+                    
+                }
+
+            }
+            
 
          } else {
-            console.log("testElse");
-            let cartArr = JSON.parse(localStorage.getItem("cartSave"));
-            cartArr.push(this.getAttribute("data-cart"));
-            localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+             if (kolicina.value < 1) {
+               
+                let cartArr = JSON.parse(localStorage.getItem("cartSave"));
+                cartArr.push(this.getAttribute("data-cart"));
+                localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+                badge.textContent++ ;
+                 
+             } else {
+                
+                let cartArr = JSON.parse(localStorage.getItem("cartSave"));
+                for (let i = 0; i < kolicina.value; i++) {
+                    cartArr.push(this.getAttribute("data-cart"));
+                    localStorage.setItem("cartSave" , JSON.stringify(cartArr));
+                    badge.textContent++ ;
+                    
+                }
+                
+
+             }
+            
 
             // let newCart = JSON.parse(localStorage.getItem("cartSave"));
             // newCart.push(this.getAttribute("data-cart"));

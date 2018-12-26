@@ -2,6 +2,8 @@ $(".back-to-top").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 1000);
 });
 
+localStorage.removeItem('save');
+localStorage.removeItem('save1');
 let template = document.querySelector("#kolekcija");
 templateInr = template.innerHTML;
 
@@ -9,6 +11,22 @@ let koll = document.querySelector("#koll");
 let zenska = document.querySelector("#zenska");
 let muska = document.querySelector("#muska");
 let nfa = document.querySelectorAll('.nfa');
+
+
+////////// broj na korpi u desnom uglu, vuce info iz localstorage //////
+let badge = document.querySelector(".badge");
+if (!localStorage.getItem("cartSave")) {
+  badge.textContent = 0 ;
+} else{
+    let badgeNumber = JSON.parse(localStorage.getItem("cartSave"));
+    badge.textContent = badgeNumber.length ;  
+}
+
+badge.addEventListener("click" , goToCart);
+
+function goToCart() {
+    this.parentElement.setAttribute("href", "http://localhost/shopVezba/shoppingCart.html");
+}
 
 $.ajax({
     url: "https://raw.githubusercontent.com/Danilovesovic/shop/master/shop.json",

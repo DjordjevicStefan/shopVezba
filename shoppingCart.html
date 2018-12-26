@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Cart</title>
+</head>
+<body>
+
+        <div class="navbar">
+                <!-- Container -->
+                <div class="container">
+                  <div class="navbar-header">
+                    
+                    <h1 class="logo">
+                      <a href="index.html"><img src="img/logo.png" alt="Shop logo" class="img-responsive"></a>
+                    </h1>
+                  </div>
+                 
+                  
+                
+                
+              </div>
+
+              <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                      <h1 class="display-4">Your cart!!</h1>
+                      <p class="lead">Items that you selected</p>
+                    </div>
+                  </div>
+
+
+                  <div class="products-holder">
+                       
+                        <div id="listCart" class="row">
+                          <script id="sellCart" type="template">
+                            <div class="col-xs-6 col-md-4 col-lg-3 article-clear">
+              
+                              <article class="product clearfix">
+                                <!-- Image Holder -->
+                              <div class="product-img-holder">
+                                  <a href="#">
+                                    <img src="img/products/{{imgSrc}}.jpg" alt="{{imgSrc}}" class="img-responsive sell">
+                                </a>
+                                    <ul class="hover-list list-reset">
+                                      <li><a href="#"><img src="img/shop-icon.png" alt="Shop icon"></a></li>
+                                        <li><a href="#"><img src="img/view-icon.png" alt="View icon"></a></li>
+                                          <li><a href="#"><img src="img/like-icon.png" alt="Like icon"></a></li>
+                                </ul>
+                              </div>
+                                        <!-- Image Holder END -->
+                              <!-- Product Title -->
+                              <div class="product-title clearfix">
+                                          <h3>{{productTitle}} <span>{{model}}</span></h3>
+                                          <span>{{price}}rsd</span>
+                                        </div>
+                                        <!-- Product Title END -->
+                              <!-- Color Picker -->
+                              <ul class="color-picker list-reset">
+                                          <li><a href="#" class="purple">Purple</a></li>
+                                          <li><a href="#" class="green">Green</a></li>
+                                          <li><a href="#" class="dark-gray">Dark grey</a></li>
+                                        </ul>
+                                        <!-- Color Picker END -->
+                            </article>
+                        
+                          </div>
+                          </script>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="main/shop.js"></script>
+</body>
+</html>
